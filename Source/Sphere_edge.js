@@ -89,7 +89,7 @@ function init()
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     // Thay đổi màu nền
-    renderer.setClearColor('rgb(120, 120, 120)');
+    renderer.setClearColor('rgb(201, 146, 205)');
 
     // Đẩy thuộc tính domElement của renderer vào thẻ webgl trong file html
     document.getElementById('webgl').appendChild(renderer.domElement);
@@ -108,7 +108,7 @@ function getPlane(size)
 {
     var geometry = new THREE.PlaneGeometry(size, size);
     var material = new THREE.MeshPhongMaterial({
-        color: 'rgb(120,120,120)',
+        color: 'rgb(201, 146, 205)',
         side: THREE.DoubleSide
     })
     var mesh = new THREE.Mesh(geometry, material);
@@ -139,7 +139,7 @@ function getSolidSphere(size)
 
     // Tạo vật liệu cho hình hộp
     var material = new THREE.MeshPhongMaterial({
-        color: 'rgb(120, 120, 120)',
+        color: 'rgb(201, 146, 205)',
         map: image
     })
 
