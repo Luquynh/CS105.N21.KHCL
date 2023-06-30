@@ -31,7 +31,7 @@ function init()
     plane.position.y = -2;
 
     // Khởi tạo và đặt vị trí cho ánh sáng
-    var pointLight1 = getPointLight(1);
+    var pointLight1 = getPointLight(0.2);
     var pointLight2 = getPointLight(1);
     var pointLight3 = getPointLight(1);
     pointLight1.position.y = 1.5;
@@ -88,7 +88,8 @@ function init()
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     // Thay đổi màu nền
-    renderer.setClearColor('rgb(120, 120, 120)');
+    renderer.setClearColor('rgb(201, 146, 205)');
+
 
     // Đẩy thuộc tính domElement của renderer vào thẻ webgl trong file html
     document.getElementById('webgl').appendChild(renderer.domElement);
@@ -107,7 +108,7 @@ function getPlane(size)
 {
     var geometry = new THREE.PlaneGeometry(size, size);
     var material = new THREE.MeshPhongMaterial({
-        color: 'rgb(120,120,120)',
+        color: 'rgb(201, 146, 205)',
         side: THREE.DoubleSide
     })
     var mesh = new THREE.Mesh(geometry, material);
@@ -128,45 +129,12 @@ function getSphere(size)
     return mesh;
 }
 
-function getSolidCylinder(rt,rb,h,rs)
-{
-    // Tạo khung cho hình cầu
-    var geometry = new THREE.CylinderGeometry(rt,rb,h,rs);
-    // Tạo vật liệu cho hình cầu
-    var textureLoader = new THREE.TextureLoader();
-    image = textureLoader.load('diffuse.jpg');
 
-    // Tạo vật liệu cho hình hộp
-    var material = new THREE.MeshPhongMaterial({
-        color: 'rgb(120, 120, 120)',
-        map: image
-    })
-
-    // Kết hợp khung và vật liệu của hình hộp để có đối tượng
-    var mesh = new THREE.Mesh(geometry,material);
-    mesh.castShadow = true;
-    return mesh;
-}
-
-
-function getLineCylinder(rt,rb,h,rs)
-{
-    var geometry = new THREE.CylinderGeometry(rt,rb,h,rs,10);
-    var wireframe = new THREE.WireframeGeometry( geometry );
-    var line = new THREE.LineSegments( wireframe );
-    line.material.depthTest = false;
-    line.material.opacity = 0.25;
-    line.material.transparent = true;
-    line.material.color = 'rgb(120,120,120)';
-    line.castShadow = true;
-
-    return line;
-}
 
 function getPointCylinder(rt,rb,h,rs)
 {
     var geometry = new THREE.CylinderGeometry(rt,rb,h,rs,20);
-    var material = new THREE.PointsMaterial( { color: 0x888888, size: 0.1} );
+    var material = new THREE.PointsMaterial( { color: 0x000000, size: 0.05} );
     var point = new THREE.Points( geometry, material );
     point.castShadow = true;
     return point;

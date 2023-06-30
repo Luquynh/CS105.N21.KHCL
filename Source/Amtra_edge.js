@@ -27,7 +27,7 @@ function init()
     plane.rotation.x = Math.PI/2;
     plane.position.y = -2;
 
-    var pointLight1 = getPointLight(1);
+    var pointLight1 = getPointLight(0.2);
     var pointLight2 = getPointLight(1);
     var pointLight3 = getPointLight(1);
     pointLight1.position.y = 1.5;
@@ -79,7 +79,7 @@ function init()
 
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    renderer.setClearColor('rgb(120, 120, 120)');
+    renderer.setClearColor('rgb(201, 146, 205)');
 
     document.getElementById('webgl').appendChild(renderer.domElement);
 
@@ -93,7 +93,7 @@ function getPlane(size)
 {
     var geometry = new THREE.PlaneGeometry(size, size);
     var material = new THREE.MeshPhongMaterial({
-        color: 'rgb(120,120,120)',
+        color: 'rgb(201, 146, 205)',
         side: THREE.DoubleSide
     })
     var mesh = new THREE.Mesh(geometry, material);
@@ -127,8 +127,8 @@ function update(renderer, scene, camera, controls)
 
     // Thiết lập animation cho object
     var teapot = scene.getObjectByName('teapot');
-    teapot.rotation.z += 0.01;
     teapot.rotation.y += 0.01;
+    teapot.rotation.z += 0.01;
 
     controls.update();
     // Đệ quy hàm update

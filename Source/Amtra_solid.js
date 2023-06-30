@@ -27,7 +27,7 @@ function init()
     plane.rotation.x = Math.PI/2;
     plane.position.y = -2;
 
-    var pointLight1 = getPointLight(1);
+    var pointLight1 = getPointLight(0.2);
     var pointLight2 = getPointLight(1);
     var pointLight3 = getPointLight(1);
     pointLight1.position.y = 1.5;
@@ -79,7 +79,7 @@ function init()
 
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    renderer.setClearColor('rgb(120, 120, 120)');
+    renderer.setClearColor('rgb(201, 146, 205)');
 
     document.getElementById('webgl').appendChild(renderer.domElement);
 
@@ -93,7 +93,7 @@ function getPlane(size)
 {
     var geometry = new THREE.PlaneGeometry(size, size);
     var material = new THREE.MeshPhongMaterial({
-        color: 'rgb(120,120,120)',
+        color: 'rgb(201, 146, 205)',
         side: THREE.DoubleSide
     })
     var mesh = new THREE.Mesh(geometry, material);
@@ -140,7 +140,7 @@ function update(renderer, scene, camera, controls)
 function GetSolidTeaPot(size, tess){
     var teapotGeometry = new TeapotGeometry(size, tess);
     var textureLoader = new THREE.TextureLoader();
-    var image = textureLoader.load('diffuse.jpg');
+    var image = textureLoader.load('assets/texture/Mat_Gradient_baseColor.jpeg');
     var teapotMaterial = new THREE.MeshPhongMaterial({
         color: 'rgb(120, 120, 120)',
         map: image
@@ -151,25 +151,7 @@ function GetSolidTeaPot(size, tess){
     return teapotMesh;
 }
 
-function GetLineTeaPot(size, tess){
-    var teapotGeometry = new TeapotGeometry(size, tess);
-    var wireframe = new THREE.WireframeGeometry( teapotGeometry );
-    var line = new THREE.LineSegments( wireframe );
-    line.material.depthTest = false;
-    line.material.opacity = 0.25;
-    line.material.transparent = true;
-    line.material.color = 'rgb(120,120,120)';
-    line.castShadow = true;
 
-    return line;
-}
 
-function GetPointTeaPot(size, tess){
-    var teapotGeometry = new TeapotGeometry(size, tess);
-    var material = new THREE.PointsMaterial( { color: 0x888888, size: 0.1} );
-    var point = new THREE.Points(teapotGeometry, material );
-    point.castShadow = true;
-    return point;
-}
 
 var scene = init();

@@ -2,7 +2,7 @@ import * as THREE from "./three.module.js";
 import {GUI} from "./lil-gui.module.min.js";
 import {OrbitControls} from "./OrbitControls1.js"
 import {GLTFLoader} from "./GLTFLoader.js"
-
+var mixer
 function init() 
 {
     var scene = new THREE.Scene();
@@ -18,14 +18,21 @@ function init()
     camera.position.y = 2;
     camera.position.z = 5;
 
+    // 'assets/animation 10 Rover.glb'
     camera.lookAt(new THREE.Vector3(0,0,0));
     var loader = new GLTFLoader();
-    loader.load('assets/wraith.glb', function(glb){
+    loader.load('assets/animation 10 Rover.glb', function(glb){
         console.log(glb)
         var root;
         root = glb.scene;
-        root.scale.set(0.01,0.01,0.01);
-        scene.add(root);
+        scene.add(root)
+        var animations = glb.animations;
+        mixer = new THREE.AnimationMixer(root);
+        // console.log(animations[0])
+        const action = mixer.clipAction(animations[2]);
+        console.log(action)
+        action.play();
+
     }, function(xhr){
         console.log((xhr.loaded/xhr.total * 180) + "% loaded")
     }, function(error){
@@ -35,10 +42,11 @@ function init()
 
     var plane = getPlane(20);
     plane.rotation.x = Math.PI/2;
-    plane.position.y = -2;
+    plane.position.y = -1;
+    //action
 
 
-    var pointLight1 = getPointLight(1);
+    var pointLight1 = getPointLight(0.2);
     var pointLight2 = getPointLight(1);
     var pointLight3 = getPointLight(1);
     pointLight1.position.y = 1.5;
@@ -81,7 +89,7 @@ function init()
 
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    renderer.setClearColor('rgb(120, 120, 120)');
+    renderer.setClearColor('rgb(  201, 146, 205 )');
 
     document.getElementById('webgl').appendChild(renderer.domElement);
 
@@ -95,7 +103,7 @@ function getPlane(size)
 {
     var geometry = new THREE.PlaneGeometry(size, size);
     var material = new THREE.MeshPhongMaterial({
-        color: 'rgb(120,120,120)',
+        color: 'rgb(   194, 194, 194  )',
         side: THREE.DoubleSide
     })
     var mesh = new THREE.Mesh(geometry, material);
@@ -121,12 +129,15 @@ function getPointLight(intensity){
     light.castShadow = true;
     return light;
 }
-
+const clock=new THREE.Clock()
 function update(renderer, scene, camera, controls)
 {
     // Truyền tham số đầu vào cho renderer
+    if (mixer) {
+        mixer.update(clock.getDelta()); // Kiểm tra nếu mixer đã được khởi tạo trước khi gọi update()
+      }
     renderer.render(scene,camera);
-
+    
     controls.update();
     // Đệ quy hàm update
     requestAnimationFrame(function(){

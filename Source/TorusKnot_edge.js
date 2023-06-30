@@ -22,9 +22,12 @@ function init()
     camera.lookAt(new THREE.Vector3(0,0,0));
 
     // Khởi tạo khối hình hộp
-    // var torusknot = getSolidTorusKnot(1, 0.1, 16, 100);
-    var torusknot = getLineTorusKnot(1, 0.1, 16, 100);
-    // var torusknot = getPointTorusKnot(1, 0.1, 16, 100);
+    var torusknot = getLineHeart(1, 0.1, 16, 100);
+   
+    //tao grid
+    var gridHelper = new THREE.GridHelper(100, 30, "#fff", "#fff");
+    gridHelper.position.y = -1;
+    scene.add(gridHelper);   
 
     // Khởi tạo nền đất
     var plane = getPlane(20);
@@ -32,7 +35,7 @@ function init()
     plane.position.y = -2;
 
     // Khởi tạo và đặt vị trí cho ánh sáng
-    var pointLight1 = getPointLight(1);
+    var pointLight1 = getPointLight(0.2);
     var pointLight2 = getPointLight(1);
     var pointLight3 = getPointLight(1);
     pointLight1.position.y = 1.5;
@@ -59,7 +62,7 @@ function init()
     const pointLightFolder1 = gui.addFolder("pointLight1");
     const pointLightFolder2 = gui.addFolder("pointLight2");
     const pointLightFolder3 = gui.addFolder("pointLight3");
-    const torusknotFolder = gui.addFolder("torusknot");
+    const torusknotFolder = gui.addFolder("Heart");
     pointLightFolder1.add(pointLight1, 'intensity', 0, 10);
     pointLightFolder1.add(pointLight1.position, 'x', 0, 5);
     pointLightFolder1.add(pointLight1.position, 'y', 0, 5);
@@ -89,7 +92,7 @@ function init()
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     // Thay đổi màu nền
-    renderer.setClearColor('rgb(120, 120, 120)');
+    renderer.setClearColor('rgb(201, 146, 205)');
 
     // Đẩy thuộc tính domElement của renderer vào thẻ webgl trong file html
     document.getElementById('webgl').appendChild(renderer.domElement);
@@ -108,7 +111,7 @@ function getPlane(size)
 {
     var geometry = new THREE.PlaneGeometry(size, size);
     var material = new THREE.MeshPhongMaterial({
-        color: 'rgb(120,120,120)',
+        color: 'rgb(201, 146, 205)',
         side: THREE.DoubleSide
     })
     var mesh = new THREE.Mesh(geometry, material);
@@ -129,50 +132,42 @@ function getSphere(size)
     return mesh;
 }
 
-function getSolidTorusKnot(r, t, rs, ts)
-{
-    // Tạo khung cho hình cầu
-    var geometry = new THREE.TorusKnotGeometry( r, t, rs, ts );
-    // Tạo vật liệu cho hình cầu
-    var textureLoader = new THREE.TextureLoader();
-    image = textureLoader.load('diffuse.jpg');
 
-    // Tạo vật liệu cho hình hộp
-    var material = new THREE.MeshPhongMaterial({
-        color: 'rgb(120, 120, 120)',
-        map: image
-    })
 
-    // Kết hợp khung và vật liệu của hình hộp để có đối tượng
-    var mesh = new THREE.Mesh(geometry,material);
-    mesh.castShadow = true;
-    return mesh;
+
+
+//draw heart shape 
+function getLineHeart() {
+  var heartShape = new THREE.Shape();
+  
+  heartShape.moveTo(0, 0);
+  heartShape.bezierCurveTo(0, -0.5, -0.8, -1, -2, -1); // Adjusted control points
+  heartShape.bezierCurveTo(-3.5, -1, -3.5, 0, -3.5, 0);
+  heartShape.bezierCurveTo(-3.5, 1, -2, 3, 0, 4); // Adjusted control points
+  heartShape.bezierCurveTo(2, 3, 3.5, 1, 3.5, 0);
+  heartShape.bezierCurveTo(3.5, 0, 3.5, -1, 2, -1); // Adjusted control points
+  heartShape.bezierCurveTo(0.8, -1, 0, -0.5, 0, 0);
+  
+  var extrudeSettings = {
+    steps: 2,
+    depth: 1,
+    bevelEnabled: false
+  };
+  
+  var geometry = new THREE.ExtrudeBufferGeometry(heartShape, extrudeSettings);
+  var wireframe = new THREE.WireframeGeometry(geometry);
+  var line = new THREE.LineSegments(wireframe);
+  line.rotation.z = Math.PI;
+  line.material.depthTest = false;
+  line.material.opacity = 0.5;
+  line.material.transparent = true;
+  line.material.color = new THREE.Color('rgb(255, 0, 0 )');
+  line.castShadow = true;
+  
+  return line;
 }
 
-
-function getLineTorusKnot(r, t, ts, rs)
-{
-    var geometry = new THREE.TorusKnotGeometry( r, t, rs, ts );
-    var wireframe = new THREE.WireframeGeometry( geometry );
-    var line = new THREE.LineSegments( wireframe );
-    line.material.depthTest = false;
-    line.material.opacity = 0.25;
-    line.material.transparent = true;
-    line.material.color = 'rgb(120,120,120)';
-    line.castShadow = true;
-
-    return line;
-}
-
-function getPointTorusKnot(r, t, rs, ts)
-{
-    var geometry = new THREE.TorusKnotGeometry( r, t, rs + 10, ts + 10);
-    var material = new THREE.PointsMaterial( { color: 0x888888, size: 0.1} );
-    var point = new THREE.Points( geometry, material );
-    point.castShadow = true;
-    return point;
-}
-
+  
 function getPointLight(intensity){
     var light = new THREE.PointLight(0xffffff, intensity);
     light.castShadow = true;
@@ -185,9 +180,12 @@ function update(renderer, scene, camera, controls)
     renderer.render(scene,camera);
 
     // Thiết lập animation cho object
-    var torusknot = scene.getObjectByName('torusknot');
-    torusknot.rotation.z += 0.01;
-    torusknot.rotation.y += 0.01;
+    var heart = scene.getObjectByName('torusknot');
+    var time = Date.now() * 0.001; // Thời gian hiện tại
+
+    // Tạo hiệu ứng đập trái tim bằng cách thay đổi scale theo thời gian
+    var scale = 0.3 + 0.1 * Math.sin(time * 4); // Thay đổi scale từ 0.9 đến 1.1
+    heart.scale.set(scale, scale, scale);
 
     controls.update();
     // Đệ quy hàm update
