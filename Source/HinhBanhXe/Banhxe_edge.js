@@ -161,7 +161,7 @@ function update(renderer, scene, camera, controls)
     // Thiết lập animation cho object
     var torus = scene.getObjectByName('torus');
     torus.rotation.z += 0.01;
-    torus.rotation.y += 0.01;
+
 
     controls.update();
     // Đệ quy hàm update

@@ -129,7 +129,7 @@ function update(renderer, scene, camera, controls)
     // Thiết lập animation cho object
     var teapot = scene.getObjectByName('teapot');
     teapot.rotation.z += 0.01;
-    teapot.rotation.y += 0.01;
+
 
     controls.update();
     // Đệ quy hàm update

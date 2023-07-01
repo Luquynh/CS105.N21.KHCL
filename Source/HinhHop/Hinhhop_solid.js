@@ -177,7 +177,7 @@ function update(renderer, scene, camera, controls)
     // Thiết lập animation cho object
     var box = scene.getObjectByName('box');
     box.rotation.z += 0.01;
-    box.rotation.y += 0.01;
+
 
     controls.update();
     // Đệ quy hàm update
