@@ -121,7 +121,7 @@ function getSolidBox(w, h, d)
 
     // Load ảnh texture cho object
     var textureLoader = new THREE.TextureLoader();
-    image = textureLoader.load('assets/texture/concrete.jpeg');
+    image = textureLoader.load('../assets/texture/wood.jpg');
 
     // Tạo vật liệu cho hình hộp
     var material = new THREE.MeshPhongMaterial({
@@ -177,7 +177,7 @@ function update(renderer, scene, camera, controls)
     // Thiết lập animation cho object
     var box = scene.getObjectByName('box');
     box.rotation.z += 0.01;
-    box.rotation.y += 0.01;
+
 
     controls.update();
     // Đệ quy hàm update

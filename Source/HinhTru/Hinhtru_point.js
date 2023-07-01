@@ -154,7 +154,7 @@ function update(renderer, scene, camera, controls)
     // Thiết lập animation cho object
     var cylinder = scene.getObjectByName('cylinder');
     cylinder.rotation.z += 0.01;
-    cylinder.rotation.y += 0.01;
+    
 
     controls.update();
     // Đệ quy hàm update

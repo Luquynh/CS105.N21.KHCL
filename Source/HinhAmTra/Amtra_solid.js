@@ -128,7 +128,7 @@ function update(renderer, scene, camera, controls)
     // Thiết lập animation cho object
     var teapot = scene.getObjectByName('teapot');
     teapot.rotation.z += 0.01;
-    teapot.rotation.y += 0.01;
+
 
     controls.update();
     // Đệ quy hàm update
@@ -140,7 +140,7 @@ function update(renderer, scene, camera, controls)
 function GetSolidTeaPot(size, tess){
     var teapotGeometry = new TeapotGeometry(size, tess);
     var textureLoader = new THREE.TextureLoader();
-    var image = textureLoader.load('assets/texture/Mat_Gradient_baseColor.jpeg');
+    var image = textureLoader.load('../assets/texture/Mat_Gradient_baseColor.jpeg');
     var teapotMaterial = new THREE.MeshPhongMaterial({
         color: 'rgb(120, 120, 120)',
         map: image

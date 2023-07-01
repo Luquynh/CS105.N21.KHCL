@@ -153,7 +153,7 @@ function update(renderer, scene, camera, controls)
     // Thiết lập animation cho object
     var cone = scene.getObjectByName('cone');
     cone.rotation.z += 0.01;
-    cone.rotation.y += 0.01;
+
 
     controls.update();
     // Đệ quy hàm update

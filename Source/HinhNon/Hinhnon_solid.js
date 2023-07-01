@@ -137,7 +137,7 @@ function getSolidCone(r,h,rs)
     var geometry = new THREE.ConeGeometry(r,h,rs);
     // Tạo vật liệu cho hình cầu
     var textureLoader = new THREE.TextureLoader();
-    image = textureLoader.load('assets/texture/concrete.jpeg');
+    image = textureLoader.load('../assets/texture/ximang.jpg');
 
     // Tạo vật liệu cho hình hộp
     var material = new THREE.MeshPhongMaterial({
@@ -166,7 +166,7 @@ function update(renderer, scene, camera, controls)
     // Thiết lập animation cho object
     var cone = scene.getObjectByName('cone');
     cone.rotation.z += 0.01;
-    cone.rotation.y += 0.01;
+
 
     controls.update();
     // Đệ quy hàm update

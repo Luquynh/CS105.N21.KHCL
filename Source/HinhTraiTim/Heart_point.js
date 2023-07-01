@@ -76,9 +76,9 @@ function init()
     pointLightFolder3.add(pointLight3.position, 'y', 0, 5);
     pointLightFolder3.add(pointLight3.position, 'z', -2, 5);
     
-    torusknotFolder.add(torusknot.scale, 'x', 0, 2);
-    torusknotFolder.add(torusknot.scale, 'y', 0, 2);
-    torusknotFolder.add(torusknot.scale, 'z', 0, 2);
+    // torusknotFolder.add(torusknot.scale, 'x', 0, 2);
+    // torusknotFolder.add(torusknot.scale, 'y', 0, 2);
+    // torusknotFolder.add(torusknot.scale, 'z', 0, 2);
     torusknotFolder.add(torusknot.rotation, 'x', 0, 10);
     torusknotFolder.add(torusknot.rotation, 'y', 0, 10);
     torusknotFolder.add(torusknot.rotation, 'z', 0, 10);

@@ -135,7 +135,7 @@ function getSolidSphere(size)
     var geometry = new THREE.SphereGeometry(size, 24, 24);
     // Tạo vật liệu cho hình cầu
     var textureLoader = new THREE.TextureLoader();
-    image = textureLoader.load('assets/texture/Mat_Gradient_baseColor.jpeg');
+    image = textureLoader.load('../assets/texture/wood.jpg');
 
     // Tạo vật liệu cho hình hộp
     var material = new THREE.MeshPhongMaterial({
@@ -187,7 +187,7 @@ function update(renderer, scene, camera, controls)
     // Thiết lập animation cho object
     var sphere = scene.getObjectByName('sphere');
     sphere.rotation.z += 0.01;
-    sphere.rotation.y += 0.01;
+    sphere.position.x = (Math.sin(Date.now() * 0.002) + 0.5) * 1.2;
 
     controls.update();
     // Đệ quy hàm update

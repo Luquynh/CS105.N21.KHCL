@@ -137,7 +137,7 @@ function getSolidTorus(r, t, rs, ts)
     var geometry = new THREE.TorusGeometry( r, t, rs, ts );
     // Tạo vật liệu cho hình cầu
     var textureLoader = new THREE.TextureLoader();
-    image = textureLoader.load('assets/texture/Mat_Gradient_baseColor.jpeg');
+    image = textureLoader.load('../assets/texture/concrete.jpeg');
 
     // Tạo vật liệu cho hình hộp
     var material = new THREE.MeshPhongMaterial({
@@ -189,7 +189,6 @@ function update(renderer, scene, camera, controls)
     // Thiết lập animation cho object
     var torus = scene.getObjectByName('torus');
     torus.rotation.z += 0.01;
-    torus.rotation.y += 0.01;
 
     controls.update();
     // Đệ quy hàm update
