@@ -135,7 +135,7 @@ function getSolidCylinder(rt,rb,h,rs)
     var geometry = new THREE.CylinderGeometry(rt,rb,h,rs);
     // Tạo vật liệu cho hình cầu
     var textureLoader = new THREE.TextureLoader();
-    image = textureLoader.load('assets/texture/concrete.jpeg');
+    image = textureLoader.load('../assets/texture/wood.jpg');
 
     // Tạo vật liệu cho hình hộp
     var material = new THREE.MeshPhongMaterial({

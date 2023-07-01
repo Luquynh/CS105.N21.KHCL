@@ -121,7 +121,7 @@ function getSolidBox(w, h, d)
 
     // Load ảnh texture cho object
     var textureLoader = new THREE.TextureLoader();
-    image = textureLoader.load('assets/texture/concrete.jpeg');
+    image = textureLoader.load('../assets/texture/wood.jpg');
 
     // Tạo vật liệu cho hình hộp
     var material = new THREE.MeshPhongMaterial({

@@ -76,9 +76,9 @@ function init()
     pointLightFolder3.add(pointLight3.position, 'y', 0, 5);
     pointLightFolder3.add(pointLight3.position, 'z', -2, 5);
     
-    torusknotFolder.add(torusknot.scale, 'x', 0, 2);
-    torusknotFolder.add(torusknot.scale, 'y', 0, 2);
-    torusknotFolder.add(torusknot.scale, 'z', 0, 2);
+    // torusknotFolder.add(torusknot.scale, 'x', 0, 2);
+    // torusknotFolder.add(torusknot.scale, 'y', 0, 2);
+    // torusknotFolder.add(torusknot.scale, 'z', 0, 2);
     torusknotFolder.add(torusknot.rotation, 'x', 0, 10);
     torusknotFolder.add(torusknot.rotation, 'y', 0, 10);
     torusknotFolder.add(torusknot.rotation, 'z', 0, 10);
@@ -171,9 +171,15 @@ function getSolidHeart() {
       depth: 1,
       bevelEnabled: false
     };
-  
+    var textureLoader = new THREE.TextureLoader();
+    image = textureLoader.load('../assets/texture/redtexture.jpg');
+
+    // Tạo vật liệu cho hình hộp
+    var material = new THREE.MeshPhongMaterial({
+        color: 0xff0000,
+        map: image
+    })
     var geometry = new THREE.ExtrudeBufferGeometry(heartShape, extrudeSettings);
-    var material = new THREE.MeshPhongMaterial({ color: 0xff0000 });
     var mesh = new THREE.Mesh(geometry, material);
     mesh.scale.set(0.01, 0.01, 0.01); // Chỉnh kích thước nhỏ hơn ba lần
     mesh.rotation.z = Math.PI; // Xoay trái tim 180 độ theo trục Z

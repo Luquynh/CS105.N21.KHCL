@@ -137,7 +137,7 @@ function getSolidCone(r,h,rs)
     var geometry = new THREE.ConeGeometry(r,h,rs);
     // Tạo vật liệu cho hình cầu
     var textureLoader = new THREE.TextureLoader();
-    image = textureLoader.load('assets/texture/concrete.jpeg');
+    image = textureLoader.load('../assets/texture/ximang.jpg');
 
     // Tạo vật liệu cho hình hộp
     var material = new THREE.MeshPhongMaterial({

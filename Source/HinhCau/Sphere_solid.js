@@ -135,7 +135,7 @@ function getSolidSphere(size)
     var geometry = new THREE.SphereGeometry(size, 24, 24);
     // Tạo vật liệu cho hình cầu
     var textureLoader = new THREE.TextureLoader();
-    image = textureLoader.load('assets/texture/Mat_Gradient_baseColor.jpeg');
+    image = textureLoader.load('../assets/texture/wood.jpg');
 
     // Tạo vật liệu cho hình hộp
     var material = new THREE.MeshPhongMaterial({
