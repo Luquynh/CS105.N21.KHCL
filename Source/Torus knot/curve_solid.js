@@ -168,7 +168,7 @@ function getInfinityShape() {
   
     // Tạo vật liệu cho hình vô cực
     var textureLoader = new THREE.TextureLoader();
-    var image = textureLoader.load('../assets/texture/green.jpg');
+    var image = textureLoader.load('../assets/texture/Mat_Gradient_baseColor.jpeg');
     var material = new THREE.MeshPhongMaterial({
       color: 'rgb(120, 120, 120)',
       map: image
