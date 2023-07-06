@@ -171,7 +171,8 @@ function update(renderer, scene, camera, controls)
 
     // Tạo hiệu ứng đập trái tim bằng cách thay đổi scale theo thời gian
     var scale = 0.3 + 0.1 * Math.sin(time * 4); // Thay đổi scale từ 0.9 đến 1.1
-    heart.scale.set(scale, scale, scale);
+    // heart.scale.set(scale, scale, scale);
+    heart.rotation.z= Date.now() * 0.001; // Thời gian hiện tại
 
     controls.update();
     // Đệ quy hàm update

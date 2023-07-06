@@ -174,11 +174,12 @@ function update(renderer, scene, camera, controls)
 
     // Thiết lập animation cho object
     var heart = scene.getObjectByName('torusknot');
-    var time = Date.now() * 0.001; // Thời gian hiện tại
+    // var time = Date.now() * 0.001; // Thời gian hiện tại
+    heart.rotation.z= Date.now() * 0.001; // Thời gian hiện tại
 
     // Tạo hiệu ứng đập trái tim bằng cách thay đổi scale theo thời gian
-    var scale = 0.3 + 0.1 * Math.sin(time * 4); // Thay đổi scale từ 0.9 đến 1.1
-    heart.scale.set(scale, scale, scale);
+    // var scale = 0.3 + 0.1 * Math.sin(time * 4); // Thay đổi scale từ 0.9 đến 1.1
+    // heart.scale.set(scale, scale, scale);
 
     controls.update();
     // Đệ quy hàm update
