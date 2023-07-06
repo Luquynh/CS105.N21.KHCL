@@ -62,7 +62,7 @@ function init()
     const pointLightFolder1 = gui.addFolder("pointLight1");
     const pointLightFolder2 = gui.addFolder("pointLight2");
     const pointLightFolder3 = gui.addFolder("pointLight3");
-    const torusknotFolder = gui.addFolder("Heart");
+    const torusknotFolder = gui.addFolder("Torus Knot");
     pointLightFolder1.add(pointLight1, 'intensity', 0, 10);
     pointLightFolder1.add(pointLight1.position, 'x', 0, 5);
     pointLightFolder1.add(pointLight1.position, 'y', 0, 5);
@@ -76,9 +76,9 @@ function init()
     pointLightFolder3.add(pointLight3.position, 'y', 0, 5);
     pointLightFolder3.add(pointLight3.position, 'z', -2, 5);
     
-    // torusknotFolder.add(torusknot.scale, 'x', 0, 2);
-    // torusknotFolder.add(torusknot.scale, 'y', 0, 2);
-    // torusknotFolder.add(torusknot.scale, 'z', 0, 2);
+    torusknotFolder.add(torusknot.scale, 'x', 0, 2);
+    torusknotFolder.add(torusknot.scale, 'y', 0, 2);
+    torusknotFolder.add(torusknot.scale, 'z', 0, 2);
     torusknotFolder.add(torusknot.rotation, 'x', 0, 10);
     torusknotFolder.add(torusknot.rotation, 'y', 0, 10);
     torusknotFolder.add(torusknot.rotation, 'z', 0, 10);
@@ -157,7 +157,7 @@ function getSolidTorusKnot(r, t, rs, ts)
 
 function getInfinityShape() {
     var radius = 1; // Bán kính torus knot
-    var tube = 0.18; // Đường kính ống torus knot
+    var tube = 0.17; // Đường kính ống torus knot
     var tubularSegments = 50; // Số đoạn ống torus knot
     var radialSegments = 10; // Số đoạn quanh torus knot
     var p = 2; // Số vòng torus knot
